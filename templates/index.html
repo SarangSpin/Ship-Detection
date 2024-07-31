@@ -4,13 +4,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Image Classification</title>
+    <title>Ship Detection</title>
     <link rel="stylesheet" href="static/styles.css">
 </head>
 
 <body>
     <div class="image_form">
-        <h1>Indian Food Image Classification</h1>
+        <h1>Ship Detection</h1>
 
         <form action="/" method="post" enctype="multipart/form-data">
             <label for="file" class="file-label">Choose File:</label>
@@ -22,12 +22,9 @@
                 <p>{{ error }}</p>
                 {% endif %}
                 {% if filename %}
-                <h2>Result:</h2>
-                <p class="result">Total Calories: {{ total_calories }}.00 kcal</p>
-                {% for item in items_with_calories %}
-                <p class="result">{{item.get('label')}}: {{item.get('calories')}}.00 kcal</p>
-                {% endfor %}
+                <h2>Result</h2>
                 <img src="{{ filename }}" alt="Result" width="750px">
+                <p>Number of Ships Detected: {{ ship_count }}</p>
 
                 <!-- <p>Items Detected: {{ items_with_calories }}</p> -->
                 <!-- Add this inside the result-section div -->
@@ -42,14 +39,7 @@
                     </div>
                     <label for="correct" id="correctpred" style="display:none;">Great!</label>
                     <label for="correct_food" id="correctFoodLabel"
-                        style="display: none; font-family: 'Courier New', Courier, monospace;">Enter Correct Food
-                        Name:</label>
-                    <input type="text" id="correct_food" name="correct_food" placeholder="Correct food name"
-                        style="display: none; margin: auto;">
-
-                    <!-- Change the button to directly open the Google search link -->
-                    <button type="button" id="checkcal" style="display: none;" onclick="openGoogleSearchLink()">Check
-                        Calories</button>
+                        style="display: none; font-family: 'Courier New', Courier, monospace;">Thank you for letting us know!</label>
                 </form>
 
                 {% endif %}
@@ -58,42 +48,7 @@
 
         </form>
     </div>
-    <div class="dishlist">
-        <h3>List of 30 dishes the model has been trained on:</h3>
-        <ul>
-            <li>aloo-fry</li>
-            <li>aloo-gobi</li>
-            <li>bhature</li>
-            <li>bhindi-masala</li>
-            <li>chai</li>
-            <li>chicken-biryani</li>
-            <li>chicken-seekh-kebab</li>
-            <li>chole</li>
-            <li>coconut-chutney</li>
-            <li>dal-tadka</li>
-            <li>dosa</li>
-            <li>dum-aloo</li>
-            <li>fish-curry</li>
-            <li>ghevar</li>
-            <li>green-chutney</li>
-            <li>gulab-jamun</li>
-            <li>idli</li>
-            <li>jalebi</li>
-            <li>kheer</li>
-            <li>kulfi</li>
-            <li>lassi</li>
-            <li>mutton-curry</li>
-            <li>onion-pakoda</li>
-            <li>palak-paneer</li>
-            <li>poha</li>
-            <li>rajma-curry</li>
-            <li>rasmalai</li>
-            <li>samosa</li>
-            <li>shahi-paneer</li>
-            <li>white-rice</li>
-
-        </ul>
-    </div>
+    
     <script>
         function displayFileName() {
             var fileInput = document.getElementById('file');
