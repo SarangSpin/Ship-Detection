@@ -68,10 +68,10 @@ def upload_file():
     file = request.files['file']
 
     if file.filename == '':
-        return render_template('index.html', error="")
+        return render_template('index.html', error="No selected file")
 
     if file and allowed_file(file.filename):
-        img = cv2.imdecode(np.fromstring(file.read(), np.uint8), cv2.IMREAD_UNCHANGED)
+        img = cv2.imdecode(np.frombuffer(file.read(), np.uint8), cv2.IMREAD_UNCHANGED)
         
         result_bytes, ship_count = detect_and_visualize(img, r"./best1.pt", class_mapping)
         

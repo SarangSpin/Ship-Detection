@@ -26,7 +26,6 @@
                 <img src="{{ filename }}" alt="Result" width="750px">
                 <p>Number of Ships Detected: {{ ship_count }}</p>
 
-                <!-- <p>Items Detected: {{ items_with_calories }}</p> -->
                 <!-- Add this inside the result-section div -->
                 <form action="/feedback" method="post" id="feedbackForm">
                     <h2>Feedback:</h2>
@@ -34,12 +33,10 @@
                     <label style="color: white;">Was the prediction correct?</label>
                     <div>
                         <button type="button" id="correctbutton" onclick="setPrediction('correct')">Correct</button>
-                        <button type="button" id="incorrectbutton"
-                            onclick="setPrediction('incorrect')">Incorrect</button>
+                        <button type="button" id="incorrectbutton" onclick="setPrediction('incorrect')">Incorrect</button>
                     </div>
                     <label for="correct" id="correctpred" style="display:none;">Great!</label>
-                    <label for="correct_food" id="correctFoodLabel"
-                        style="display: none; font-family: 'Courier New', Courier, monospace;">Thank you for letting us know!</label>
+                    <label for="correct_ship" id="correctShipLabel" style="display: none; font-family: 'Courier New', Courier, monospace;">Thank you for letting us know!</label>
                 </form>
 
                 {% endif %}
@@ -54,46 +51,23 @@
             var fileInput = document.getElementById('file');
             var fileNameSpan = document.getElementById('file-name');
             fileNameSpan.textContent = fileInput.files[0].name || 'No file chosen';
-            fileNameSpan.style.color='white';
+            fileNameSpan.style.color = 'white';
         }
 
         function setPrediction(value) {
-            var correctFoodLabel = document.getElementById('correctFoodLabel');
-            var correctFoodInput = document.getElementById('correct_food');
+            var correctShipLabel = document.getElementById('correctShipLabel');
             var correctPrediction = document.getElementById('correctpred');
             var corrbutton = document.getElementById('correctbutton');
             var incorrbutton = document.getElementById('incorrectbutton');
-            var checkcalories = document.getElementById('checkcal');
 
             if (value === 'incorrect') {
-                correctFoodLabel.style.display = 'block';
-                correctFoodInput.style.display = 'block';
+                correctShipLabel.style.display = 'block';
                 corrbutton.style.display = 'none';
                 incorrbutton.style.display = 'none';
-                checkcalories.style.display = 'block';
             } else {
-                correctPrediction.style.display = 'block';
                 correctPrediction.style.display = 'block';
                 corrbutton.style.display = 'none';
                 incorrbutton.style.display = 'none';
-            }
-        }
-
-        function openGoogleSearchLink() {
-            var correctFoodInput = document.getElementById('correct_food');
-
-            // Get the entered food name
-            var foodName = correctFoodInput.value.trim();
-
-            // Check if the food name is not empty
-            if (foodName !== '') {
-                // Generate the Google search link
-                var searchLink = `https://www.google.com/search?q=${encodeURIComponent(foodName)}+calories`;
-
-                // Open the link in a new tab or window
-                window.open(searchLink, '_blank');
-            } else {
-                alert('Please enter a correct food name first.');
             }
         }
     </script>
